@@ -10,19 +10,45 @@ async function initMap() {
         zoom: 8
     }
 
-        //array of coordinates
-        coordsArray = [
-            {
-                coords: {lat: 36.1627, lng: -86.7816}
-            },
-            {
-                coords: {lat: 36.6627, lng: -86.2816}
-            }
-        ]
+    //array of coordinates
+    coordsArray = []
+    
 
-    map = new Map($('#map')[0], options)
+    map = new Map($('#map')[0], options) // initializes the map, its location, and its zoom based on the options object
 
     geocoder = new google.maps.Geocoder();
+
+var request = {
+    location: {lat: 36.1627, lng: -86.7816},
+    radius: '5000', // radius in meters
+    type: ['doctor'] // look through Google Maps Place Types documentation to see all possible filters
+}
+
+service = new google.maps.places.PlacesService(map);
+service.nearbySearch(request, callBack);
+
+function callBack(results, status){
+    if (status == google.maps.places.PlacesServiceStatus.OK){
+        for (var i = 0; i < results.length; i++){
+            placesCoords = JSON.parse(JSON.stringify(results[i].geometry.location)) // this gets the coordinates of each google place API request (it looks weird i know)
+            var newCoordObject = {
+                coords: placesCoords
+            }
+            coordsArray.push(newCoordObject)
+            // coordsArray.push(JSON.parse(JSON.stringify(results[i].geometry.location)))
+            console.log(newCoordObject);
+            // console.log(JSON.parse(JSON.stringify(results[i].geometry.location)))
+            console.log(results[i])
+        }
+        console.log(coordsArray)
+        placeMarkers(); // places markers after all of the coordinates are pushed into the array
+    }
+    else{
+        console.log('something went wrong')
+        console.error(status);
+        console.log(results)
+    }
+}
 
     //TODO change this from a window prompt to reading an html input element later
     function askQuestion(){
@@ -54,19 +80,6 @@ async function initMap() {
         })
     }
     getGeoCode();
-
-    // var marker = new google.maps.Marker({
-    //     position: {lat: 36.1627, lng: -86.7816},
-    //     map: map
-    // })
-
-    // var infoWindow = new google.maps.InfoWindow({
-    //     content: '<h1>something</h1>'
-    // })
-
-    // marker.addListener('click', function(){
-    //     infoWindow.open(map, marker)
-    // })
 
     // adds markers
     function addMarker(props){
