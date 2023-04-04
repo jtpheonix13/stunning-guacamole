@@ -3,11 +3,24 @@ var geocoder;
 let map;
 const searchButton = $("#searchButton");
 const userCity = $("#userCity");
+const amusementPark = $("#checkAmusement");
+const aquarium = $("#checkAquarium");
+const cafe = $("#checkCafe");
+const campground = $("#checkCampground");
+const casino = $("#checkCasino");
+const restaurant = $("#checkRestaurant");
+const museum = $("#checkMuseum");
+const nightClub = $("#checkNight");
+const shoppingMall = $("#checkShopping");
+const tourist = $("#checkTourist");
+const zoo = $("#checkZoo");
+
+const attractionArr = [amusementPark, aquarium, cafe, campground, casino, restaurant, museum, nightClub, shoppingMall, tourist, zoo];
+const typeArr = ["amusement_park", "aquarium", "cafe", "campground", "casino", "restaurant", "museum", "night_club", "shopping_mall", "tourist_attraction", "zoo"];
+
 
 //array of coordinates
-var coordsArray = []
-
-var markersArray = [];
+coordsArray = []
 
 async function initMap() {
     const { Map } = await google.maps.importLibrary("maps");
@@ -37,28 +50,41 @@ function geoCity() {
                 position: results[0].geometry.location
             })
             latlng = JSON.parse(JSON.stringify(marker.position))
-            console.log(latlng);
-            markersArray.push(marker) // pushes the city marker to the markersArray because it wouldn't disappear otherwise
+            console.log(latlng)
             getFilterMarkers();
+
         } else {
             alert("Geocode was not successful");
         }
+        
+
+        
     })
 
     function getFilterMarkers(){ // this will get the markers depending on the radius and type of place
+
         var request = {
             location: latlng,
             radius: '5000', // radius in meters
-            type: ['restaurant'] // look through Google Maps Place Types documentation to see all possible filters
+            type: ["city_hall"] // look through Google Maps Place Types documentation to see all possible filters
         }
+
+        for (var i = 0; i < attractionArr.length; i++) {
+            var checkedBox = attractionArr[i];
+            if (checkedBox.is(":checked")) {
+
+                request.type.push(typeArr[i]);
+            }
+
+            
+            
+        }
+        console.log(request.type);
         
         service = new google.maps.places.PlacesService(map);
         service.nearbySearch(request, callBack);
         
         function callBack(results, status){
-            removeMarkers();
-            // markersArray.push(request.location);
-            // console.log(markersArray)
             if (status == google.maps.places.PlacesServiceStatus.OK){
                 coordsArray = []; // empties coordsArray everytime the function is called so it doesnt stack
                 for (var i = 0; i < results.length; i++){
@@ -68,8 +94,8 @@ function geoCity() {
                     }
                     coordsArray.push(newCoordObject)
                 }
-                console.log(coordsArray)
-                console.log(request)
+                //console.log(coordsArray)
+                //console.log(request)
                 placeMarkers(); // places markers after all of the coordinates are pushed into the array
             }
             else{
@@ -87,19 +113,12 @@ function geoCity() {
             position: props.coords,
             map: map
     })
-    markersArray.push(marker) // stores anchor points in an array so that they can properly be removed
 }
 
 // loops through every coordinate in the coordsArray and adds a marker to it
 function placeMarkers(){
     for(var i = 0; i < coordsArray.length; i++){
         addMarker(coordsArray[i])
-    }
-}
-
-function removeMarkers(){
-    for(var i = 0; i < markersArray.length; i++){
-        markersArray[i].setMap(null);
     }
 }
 
