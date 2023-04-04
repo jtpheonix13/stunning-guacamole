@@ -97,8 +97,6 @@ function geoCity() {
         infoWindow.close(map);
         infoWindow.open(map, this);
     })
-    console.log(markersArray)
-    console.log(placeNameArray)
 }
 
 // loops through every coordinate in the coordsArray and adds a marker to it

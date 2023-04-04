@@ -10,14 +10,78 @@
 </head>
 <body>
     <h1>Google maps</h1>
-    <div class="mb-3 mt-3">
-        <label for="userCity"><h3>Search for a City:</h3></label>
-        <input class="form-control" id="userCity" name="text" placeholder="ex. Knoxville Tennessee"></input>
-        <div>
-            <button id="searchButton" type="button" class="btn btn-secondary w-100 mt-3">Search</button>
+    <div id="map"></div>
+    <div class="row mb-3 mt-3">
+
+        <div class="col-2 text-bg-secondary rounded mt-3">
+
+            <label class="mb-3" for="userCity"><h3>Search for a City:</h3></label>
+            <input class="form-control" id="userCity" name="text" placeholder="ex. Knoxville Tennessee"></input>
+
+            <div class="text-center m-3">What Type of locations are you interested in?</div>
+            <div class="form-check ms-2 m-3">
+                <label  class="form-check-label">
+                <input id="checkAmusement" class="form-check-input" type="checkbox" name="amusement-park"> Amusement Park
+                </label>
+            </div>
+            <div class="form-check ms-2 mb-3">
+                <label class="form-check-label">
+                <input id="checkAquarium" class="form-check-input" type="checkbox" name="aquarium"> Aquarium
+                </label>
+            </div>
+            <div class="form-check ms-2 mb-3">
+                <label class="form-check-label">
+                <input id="checkCafe" class="form-check-input" type="checkbox" name="cafe"> Cafe
+                </label>
+            </div>
+            <div class="form-check ms-2 mb-3">
+                <label class="form-check-label">
+                <input id="checkCampground" class="form-check-input" type="checkbox" name="campground"> Campground
+                </label>
+            </div>
+            <div class="form-check ms-2 mb-3">
+                <label class="form-check-label">
+                <input id="checkCasino" class="form-check-input" type="checkbox" name="casino"> Casino
+                </label>
+            </div>
+            <div class="form-check ms-2 mb-3">
+                <label class="form-check-label">
+                <input id="checkRestaurant" class="form-check-input" type="checkbox" name="restaurant"> Restaurant
+                </label>
+            </div>
+            <div class="form-check ms-2 mb-3">
+                <label class="form-check-label">
+                <input id="checkMuseum" class="form-check-input" type="checkbox" name="museum"> Museum
+                </label>
+            </div>
+            <div class="form-check ms-2 mb-3">
+                <label class="form-check-label">
+                <input id="checkNight" class="form-check-input" type="checkbox" name="night-club"> Night Club
+                </label>
+            </div>
+            <div class="form-check ms-2 mb-3">
+                <label class="form-check-label">
+                <input id="checkShopping" class="form-check-input" type="checkbox" name="shopping_mall"> Shopping Mall
+                </label>
+            </div>
+            <div class="form-check ms-2 mb-3">
+                <label class="form-check-label">
+                <input id="checkTourist" class="form-check-input" type="checkbox" name="tourist-attraction"> Tourist Attraction
+                </label>
+            </div>
+            <div class="form-check ms-2 mb-3">
+                <label class="form-check-label">
+                <input id="checkZoo" class="form-check-input" type="checkbox" name="zoo"> Zoo
+                </label>
+            </div>
+            <div>
+                <button id="searchButton" type="button" class="btn btn-primary w-100">Search</button>
+            </div>
         </div>
+        
     </div>
-<div id="map"></div>
+    
+
 
     <!-- <script>
         (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
