@@ -5,7 +5,9 @@ const searchButton = $("#searchButton");
 const userCity = $("#userCity");
 
 //array of coordinates
-coordsArray = []
+var coordsArray = []
+
+var markersArray = [];
 
 async function initMap() {
     const { Map } = await google.maps.importLibrary("maps");
@@ -35,7 +37,8 @@ function geoCity() {
                 position: results[0].geometry.location
             })
             latlng = JSON.parse(JSON.stringify(marker.position))
-            console.log(latlng)
+            console.log(latlng);
+            markersArray.push(marker) // pushes the city marker to the markersArray because it wouldn't disappear otherwise
             getFilterMarkers();
         } else {
             alert("Geocode was not successful");
@@ -53,6 +56,9 @@ function geoCity() {
         service.nearbySearch(request, callBack);
         
         function callBack(results, status){
+            removeMarkers();
+            // markersArray.push(request.location);
+            // console.log(markersArray)
             if (status == google.maps.places.PlacesServiceStatus.OK){
                 coordsArray = []; // empties coordsArray everytime the function is called so it doesnt stack
                 for (var i = 0; i < results.length; i++){
@@ -81,12 +87,19 @@ function geoCity() {
             position: props.coords,
             map: map
     })
+    markersArray.push(marker) // stores anchor points in an array so that they can properly be removed
 }
 
 // loops through every coordinate in the coordsArray and adds a marker to it
 function placeMarkers(){
     for(var i = 0; i < coordsArray.length; i++){
         addMarker(coordsArray[i])
+    }
+}
+
+function removeMarkers(){
+    for(var i = 0; i < markersArray.length; i++){
+        markersArray[i].setMap(null);
     }
 }
 
