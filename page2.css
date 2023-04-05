@@ -1,0 +1,17 @@
+body{
+    background-color: rgb(190, 243, 243);
+}
+.rectange{
+    background-color: #ffffff;
+    position: absolute;
+    height: 40px;
+    width: 100%;
+    margin-top: 0%;
+}
+
+p{
+    font-size: 15px;
+    padding-left: 30px;
+    font-weight: lighter;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    }

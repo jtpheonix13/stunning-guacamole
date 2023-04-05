@@ -1,0 +1,139 @@
+body{
+    background-color: rgb(185, 214, 173);
+}
+.rectangle1 {
+    /* background-color: #eee; */
+	width: 500px;
+	height: 200px;
+    margin-top: 0%;
+	margin: 0 auto;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	text-align: top;
+    font-size: 40px;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+ font-style: italic;
+ font-weight: bold;
+ 
+}
+.h1{
+    color: #000000;
+   
+    display: flex;
+    align-items: center;
+   
+}
+.rectangle2{
+background-color: #f3f2f2;
+position: relative;
+width: 350px;
+height: 100px;
+margin-top: 15%;
+margin-left: 70%;
+border-radius: 20px;
+
+}
+p{
+font-size: 20px;
+padding-left: 30px;
+padding-top: 15px;
+padding-bottom: 15px;
+font-weight: lighter;
+font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.rectangle3, .rectangle4, .rectangle5{
+    background-color:#f3f2f2;
+    position: relative;
+    width: 350px;
+    height: 100px;
+    margin-top: 1%;
+    margin-left: 70%;
+    border-radius: 20px;
+    font-size: 12px;
+    }
+.cloud{
+    position: absolute;
+    top: 10%;
+    bottom: 0;
+    left: 3%;
+  width: 300px;
+  height: 160px;
+  background-color: #f3f2f2;
+  background-clip: padding-box;
+  border-radius: 50px / 80px;
+  transform: translate(-25px, calc(50% - 25px));
+}
+.circle1{
+    background-color:  #f3f2f2; 
+    position: relative;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    margin-left: 40%;
+    margin-top: 2%;
+
+   
+   
+
+}
+.circle2{
+    background-color:  #f3f2f2; 
+    position: relative;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    margin-left: 45%;
+    margin-top: 0%;
+  
+}
+.circle3{
+    background-color:  #f3f2f2;
+    position: relative;
+    border-radius: 50%;
+    width: 10px; 
+    height: 10px;
+    margin-left: 50%;
+    
+}
+
+.arrow-container {
+    position: absolute;
+    width: 500px;
+    height: 70px;
+    background-color: #f3f2f2;
+    margin-top: 2%;
+    margin-left: 25%;
+    border-color: #000000;
+    
+  }
+  
+  .triangle {
+    position: absolute;
+    top: -12%;
+    right: -50px;
+    width: 0;
+    height: 0;
+    border-top: 50px solid transparent;
+    border-left: 50px solid #f3f2f2;
+    border-bottom: 50px solid transparent;
+    margin-left: 100%;
+    margin-bottom: 10%;
+    
+  }
+  .imagecontainer{
+    background-color: aquamarine;
+    height: 300px;
+    width: 400px;
+    position: absolute;
+    margin-top: 10%;
+    margin-left: 15%;
+  }
+  .imagecontainer img{
+    height: 300px;
+    width: 400px;
+  }
+  
+  
