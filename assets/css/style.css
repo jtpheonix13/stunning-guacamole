@@ -8,3 +8,24 @@
     margin: 0;
     padding: 0;
   }
+/* Remove the default padding and border of the infowindow */
+.gm-style-iw {
+  padding: 0;
+  border: none;
+}
+
+/* Remove the default background and border of the infowindow content container */
+.gm-style-iw-c {
+  background: none;
+  border: none;
+}
+
+.custom-info-window {
+  background-color: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  color: #333333;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  padding: 0;
+  width: 200px;
+}
