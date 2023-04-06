@@ -88,12 +88,12 @@ function geoCity() {
             type: [], // look through Google Maps Place Types documentation to see all possible filters
         }
 
-        // for (var i = 0; i < attractionArr.length; i++) {
-        //     var checkedBox = attractionArr[i];
-        //     if (checkedBox.is(":checked")) {
-        //         request.type.push(typeArr[i]);
-        //     } 
-        // }
+        for (var i = 0; i < attractionArr.length; i++) {
+            var checkedBox = attractionArr[i];
+            if (checkedBox.is(":checked")) {
+                request.type.push(typeArr[i]);
+            } 
+        }
         console.log(request.type);
         
         if (request.type.length > 0) { // only make the API call if at least one type is selected
@@ -155,15 +155,14 @@ function geoCity() {
             `
         })
     }
+
     marker.addListener('click', function(){ // changes the google maps window to be the center
-        map.panTo(marker.position)
-    })
-    marker.addListener('mouseover', function(){ // open the info window when the mouse hovers over a marker
         infoWindow.open(map, this);
+        map.panTo(marker.position)
+        infoWindowCounter++;
     })
-    marker.addListener('mouseout', function(){ // open the info window when the mouse is off a marker
-        infoWindow.close();
-    })
+
+
 }
 
 // loops through every coordinate in the coordsArray and adds a marker to it
