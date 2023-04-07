@@ -8,28 +8,65 @@
     margin: 0;
     padding: 0;
   }
-/* Define the style for the info window container */
-.info-window-container {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-  padding: 10px;
-  max-width: 300px;
+
+.tagline {
+  background-color: lightgrey;
+  height: 50px;
+  align-items: flex-end;
+  line-height: 50px;
+}  
+
+.banner {
+  background-color: #71b8c7;
+  display: flex;
+  /* justify-content: space-between; */
+  /* align-items: center; */
+  position: relative;
+  height: 200px;
+
 }
 
-/* Define the style for the info window content */
-.info-window-content {
-  font-size: 16px;
-  line-height: 1.5;
-  color: #333;
-}
-
-/* Define the style for the info window close button */
-.info-window-close {
+.banner-image {
   position: absolute;
-  top: 5px;
-  right: 5px;
-  font-size: 14px;
-  color: #999;
-  cursor: pointer;
+  height: 200px;
+  left: 0;
+  clip-path: polygon(12.5% 0, 100% 0, 100% 100%, 12.5% 100%);
+  overflow: hidden;
+  /* height: 400px;
+  background-image: url("https://cdn.pixabay.com/photo/2020/08/26/10/41/adventure-5519220_960_720.png");
+  background-size: cover;
+  background-position: right ; */
+  transform: scaleX(-1);
+}
+
+.banner-image img {
+  height: 150%;
+} 
+
+.banner-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* text-align: center;  */
+  font-size: large;
+  z-index: 1;
+
+}
+
+.banner-links {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  text-align: right;
+  align-items: flex-end;
+  font-size: 20px;
+
+}
+
+.banner-links a {
+  margin-left: 10px;
+  text-decoration: none;
+
 }
