@@ -30,7 +30,27 @@ async function initMap() {
     var latlng = new google.maps.LatLng(36.174465, -86.767960);
     var mapOptions = {
         zoom: 13,
-        center: latlng
+        center: latlng,
+        styles: [ // this is removing the default icons on the map
+            {
+                featureType: "poi",
+                elementType: "labels",
+                stylers: [
+                {
+                    visibility: "off",
+                },
+                ],
+            },
+            {
+                featureType: "administrative",
+                elementType: "labels",
+                stylers: [
+                {
+                    visibility: "off",
+                },
+                ],
+            },
+            ],   
     }
 
 map = new Map(document.getElementById('map'), mapOptions);
@@ -65,7 +85,7 @@ function geoCity() {
         var request = {
             location: latlng,
             radius: '5000', // radius in meters
-            type: [] // look through Google Maps Place Types documentation to see all possible filters
+            type: [], // look through Google Maps Place Types documentation to see all possible filters
         }
 
         for (var i = 0; i < attractionArr.length; i++) {
@@ -76,11 +96,15 @@ function geoCity() {
         }
         console.log(request.type);
         
-        placeNameArray = [];
-        markersArray = [];
-        service = new google.maps.places.PlacesService(map);
-        service.nearbySearch(request, callBack);
-        
+        if (request.type.length > 0) { // only make the API call if at least one type is selected
+            placeNameArray = [];
+            markersArray = [];
+            service = new google.maps.places.PlacesService(map);
+            service.nearbySearch(request, callBack);
+        } else{ // if no type is selected, remove all markers from the map
+            removeMarkers();
+        }
+
         function callBack(results, status){
             if (status == google.maps.places.PlacesServiceStatus.OK){
                 coordsArray = []; // empties coordsArray everytime the function is called so it doesnt stack
@@ -92,6 +116,8 @@ function geoCity() {
                     coordsArray.push(newCoordObject)
                     placeNameArray.push(results[i].name);
                 }
+                resultsArray = results;
+                console.log(resultsArray)
                 placeMarkers(); // places markers after all of the coordinates are pushed into the array
             }
             else{
@@ -105,18 +131,38 @@ function geoCity() {
 
     // adds markers
     function addMarker(props){
-        var marker = new google.maps.Marker({
-            position: props.coords,
-            map: map,
+    var marker = new google.maps.Marker({
+        position: props.coords,
+        map: map,
+        animation: google.maps.Animation.DROP,
+        icon: {
+            url: resultsArray[i].icon,
+            scaledSize: new google.maps.Size(26,26)
+        }
     })
     markersArray.push(marker) // stores anchor points in an array so that they can properly be removed
-    var infoWindow = new google.maps.InfoWindow({
-        content:placeNameArray[i]
-    })
-    marker.addListener('click', function(){
-        infoWindow.close(map);
+    if(resultsArray[i].rating){ // checks to see if a rating is applicable
+        var infoWindow = new google.maps.InfoWindow({
+            content:`
+            <h4><strong>${placeNameArray[i]}</strong></h4> 
+            Ratings: ${resultsArray[i].rating} out of 5 Stars (${resultsArray[i].user_ratings_total} total reviews)
+            `
+        })
+    }else{
+        var infoWindow = new google.maps.InfoWindow({
+            content:`
+            <h4><strong>${placeNameArray[i]}</strong></h4> (${resultsArray[i].user_ratings_total} total reviews)
+            `
+        })
+    }
+
+    marker.addListener('click', function(){ // changes the google maps window to be the center
         infoWindow.open(map, this);
+        map.panTo(marker.position)
+        infoWindowCounter++;
     })
+
+
 }
 
 // loops through every coordinate in the coordsArray and adds a marker to it
