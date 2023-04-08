@@ -1,25 +1,10 @@
 var geocoder;
 let map;
 const searchButton = $("#searchButton");
-const userCity = $("#userCity");
-const amusementPark = $("#checkAmusement");
-const aquarium = $("#checkAquarium");
-const cafe = $("#checkCafe");
-const campground = $("#checkCampground");
-const casino = $("#checkCasino");
-const restaurant = $("#checkRestaurant");
-const museum = $("#checkMuseum");
-const nightClub = $("#checkNight");
-const shoppingMall = $("#checkShopping");
-const tourist = $("#checkTourist");
-const zoo = $("#checkZoo");
-
-const attractionArr = [amusementPark, aquarium, cafe, campground, casino, restaurant, museum, nightClub, shoppingMall, tourist, zoo];
-const typeArr = ["amusement_park", "aquarium", "cafe", "campground", "casino", "restaurant", "museum", "night_club", "shopping_mall", "tourist_attraction", "zoo"];
-
+const userCity = $("#search-input");
 
 //array of coordinates
-coordsArray = []
+coordsArray = [];
 
 var markersArray = [];
 
@@ -88,13 +73,7 @@ function geoCity() {
             type: [], // look through Google Maps Place Types documentation to see all possible filters
         }
 
-        for (var i = 0; i < attractionArr.length; i++) {
-            var checkedBox = attractionArr[i];
-            if (checkedBox.is(":checked")) {
-                request.type.push(typeArr[i]);
-            } 
-        }
-        console.log(request.type);
+
         
         if (request.type.length > 0) { // only make the API call if at least one type is selected
             placeNameArray = [];
@@ -178,6 +157,6 @@ function removeMarkers(){
     }
 }
 
-}
+};
 
 initMap();
