@@ -9,52 +9,52 @@
     <title>Out 'n' About</title>
 </head>
 
-<body>
-    <header>
-        <div id="tagline">
-            <p>Let us help you discover your next adventure!</p>
-        </div>        
-        <nav>
-            <a href="#" class="nav-link">
-                <img src="./assets/images/saved.png" alt="Saved">
-            </a>
-            <a href="#" class="nav-link">
-                <img src="./assets/images/chat.png" alt="Inbox">
-            </a>
-            <a href="#" class="nav-link">
-                <img src="./assets/images/profile.png" alt="Profile">
-            </a>
-        </nav>
-    </header>
+<body class="p-3 m-0 border-0 bd-example">
 
-    <section class="banner">
-        <div class="banner-image">
-            <img src="./assets/images/cliff.png" alt="Out 'n' About Banner">
-        </div>
-        <div class="banner-content">
-            <h1 class="banner-title">Out 'n' About</h1>
-            <form class="banner-search-form" action="#" method="GET">
-                <input type="text" id="search-input" name="q" placeholder="Search for adventures">
-                <button type="submit" class="btn btn-secondary">Search</button>
-            </form>
-        </div>
-    </section>
+
+    <body>
+      <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">Out 'n' About</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="start.html">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Profile</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        
+          <section class="banner">
+            <div class="banner-image">
+                <img src="./assets/images/cliff.png" alt="Out 'n' About Banner">
+            </div>
+            <div class="banner-content">
+                <h1 class="banner-title">Out 'n' About</h1>
+            </div>
+        </section>
+        
 
     <div class="container">
         <h2 style="margin: 20px;">Curate Your Itinerary</h2>
         <form>
             <div class="form-group" style="margin-bottom: 20px;">
-                <label for="question1">1. I am traveling with:</label>
+                <label for="question1">1. I am looking to do something:</label>
                 <select class="form-control" id="question1">
-                    <option>Myself</option>
-                    <option>Partner/Spouse</option>
-                    <option>Friends</option>
-                    <option>Family</option>
-                </select>
-            </div>
-            <div class="form-group" style="margin-bottom: 20px;">
-                <label for="question2">2. I am looking to do something:</label>
-                <select class="form-control" id="question2">
                     <option>Creative</option>
                     <option>Physical</option>
                     <option>Social</option>
@@ -64,38 +64,29 @@
                 </select>
             </div>
             <div class="form-group" style="margin-bottom: 20px;">
-                <label for="question3">3. I am looking to do something:</label>
-                <select class="form-control" id="question3">
+                <label for="question2">2. I would like to be:</label>
+                <select class="form-control" id="question2">
                     <option>Indoor</option>
                     <option>Outdoor</option>
                     <option>I have no preference</option>
                 </select>
-            </div>    
+            </div>
             <div class="form-group" style="margin-bottom: 20px;">
-                <label for="question4">4. Which activity do you enjoy the most?</label>
-                <select class="form-control" id="question4">
+                <label for="question3">4. Which activity do you enjoy the most?</label>
+                <select class="form-control" id="question3">
                     <option>Sports</option>
                     <option>Art</option>
                     <option>Shopping</option>
                     <option>I like everything</option>
                 </select>
-            </div>
+            </div>    
             <div class="form-group" style="margin-bottom: 20px;">
-            <label for="question5">5. What captures your attention?</label>
-            <select class="form-control" id="question5">
+                <label for="question4">4. What captures your attention?</label>
+                <select class="form-control" id="question4">
                     <option>Nature</option>
                     <option>History</option>
                     <option>Music</option>
                     <option>Food</option>
-                </select>
-            </div>
-            <div class="form-group" style="margin-bottom: 20px;">
-            <label for="question6">6. My budget is:</label>
-            <select class="form-control" id="question6">
-                    <option>Very tight</option>
-                    <option>Moderately tight</option>
-                    <option>Average</option>
-                    <option>Generous</option>
                 </select>
             </div>
             <div class="submit-button">
@@ -104,10 +95,10 @@
         </form>
     </div>
     
-    <script src="script.js"></script>    
+    <script src="./assets/js/script.js"></script>
+    <script src="./assets/js/test.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
-    <script>https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js</script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
