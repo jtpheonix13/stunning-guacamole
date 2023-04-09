@@ -242,6 +242,7 @@ font-size: 24px;
   padding: 10px;
 }    
 
+<<<<<<< HEAD
 #map {
   height: 50%;
   width: 50%;
@@ -334,3 +335,8 @@ font-size: 24px;
     background-color: none;
   }
 }
+=======
+.footer {
+  height: 3rem;
+}
+>>>>>>> 9eb9c19a68b6911c2151cd91ab7b1d3a1be8441c
