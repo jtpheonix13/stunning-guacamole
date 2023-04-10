@@ -9,7 +9,7 @@ html, body {
 .banner {
   background-image: url("https://c.wallhere.com/photos/1d/cf/KarsiArt_Karsi_landscape_digital_art_mountains_forest_walking_hiking-2215210.jpg!d");
   background-size: cover;
-  background-position: center center;
+  background-position: center;
   height: 300px;
   width: 100%;
   display: flex;
