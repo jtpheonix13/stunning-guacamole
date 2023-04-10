@@ -2,6 +2,7 @@ var geocoder;
 let map;
 const searchButton = $("#searchButton");
 const userCity = $("#search-input");
+const citySearch = $("#city-search");
 
 //array of coordinates
 coordsArray = [];
@@ -39,13 +40,26 @@ async function initMap() {
     }
 
 map = new Map(document.getElementById('map'), mapOptions);
-// event listener on the button
-searchButton.on("click", geoCity);
+
+$("body").on("load", checkStorage());
+
+function checkStorage () {
+    var getCity = localStorage.getItem("city");
+    console.log(getCity);
+
+    if (getCity == "") {
+        return;
+    } else {
+        geoCity(getCity);
+    }
+
+}
+
 
 // function to get user input
-function geoCity() {
+function geoCity(getCity) {
 
-    chosenCity = userCity.val().trim();
+    chosenCity = getCity;
     console.log(chosenCity);
 
     geocoder.geocode({address: chosenCity}, function(results, status){
@@ -160,3 +174,20 @@ function removeMarkers(){
 };
 
 initMap();
+
+citySearch.on("click", saveCity);
+
+
+
+
+
+function saveCity () {
+    chosenCity = userCity.val().trim();
+    console.log(chosenCity);
+    localStorage.setItem("city", chosenCity);
+
+}
+
+
+
+
