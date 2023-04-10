@@ -7,6 +7,12 @@ const citySearch = $("#city-search");
 const parks = $("#parks");
 const museum = $("#museum");
 const nightLife = $("#night-life");
+const cafe = $("#cafe");
+const tourist = $("#tourist");
+const shopping = $("#shopping");
+const zoo = $("#zoo");
+const casino = $("#casino");
+const campground = $("#campground");
 
 //array of coordinates
 coordsArray = [];
@@ -80,6 +86,42 @@ function geoCity(getCity) {
             parks.on('click', addPark);
             museum.on('click', addMuseum);
             nightLife.on('click', addNightLife);
+            cafe.on('click', addCafe);
+            tourist.on('click', addTourist);
+            shopping.on('click', addShopping);
+            zoo.on('click', addZoo);
+            casino.on('click', addCasino);
+            campground.on('click', addCampground);
+
+            function addCampground() {
+                var icons = "campgroun";
+                removeMarkers();
+                getFilterMarkers(icons);
+            }
+
+            function addCasino() {
+                var icons = "casino";
+                removeMarkers();
+                getFilterMarkers(icons);
+            }
+
+            function addZoo() {
+                var icons = "zoo";
+                removeMarkers();
+                getFilterMarkers(icons);
+            }
+
+            function addShopping() {
+                var icons = "shopping_mall";
+                removeMarkers();
+                getFilterMarkers(icons);
+            }
+
+            function addTourist() {
+                var icons = "tourist_attraction";
+                removeMarkers();
+                getFilterMarkers(icons);
+            }
 
             function addPark() {
                 var icons = "park";
@@ -95,6 +137,12 @@ function geoCity(getCity) {
 
             function addNightLife() {
                 var icons= "night_club";
+                removeMarkers();
+                getFilterMarkers(icons);
+            }
+
+            function addCafe() {
+                var icons = "cafe";
                 removeMarkers();
                 getFilterMarkers(icons);
             }
