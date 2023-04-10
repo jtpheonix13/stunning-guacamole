@@ -2,10 +2,17 @@ var geocoder;
 let map;
 const searchButton = $("#searchButton");
 const userCity = $("#search-input");
+const searchFormEl = $('#search-form')
 const citySearch = $("#city-search");
 const parks = $("#parks");
 const museum = $("#museum");
 const nightLife = $("#night-life");
+const cafe = $("#cafe");
+const tourist = $("#tourist");
+const shopping = $("#shopping");
+const zoo = $("#zoo");
+const casino = $("#casino");
+const campground = $("#campground");
 
 //array of coordinates
 coordsArray = [];
@@ -79,6 +86,42 @@ function geoCity(getCity) {
             parks.on('click', addPark);
             museum.on('click', addMuseum);
             nightLife.on('click', addNightLife);
+            cafe.on('click', addCafe);
+            tourist.on('click', addTourist);
+            shopping.on('click', addShopping);
+            zoo.on('click', addZoo);
+            casino.on('click', addCasino);
+            campground.on('click', addCampground);
+
+            function addCampground() {
+                var icons = "campgroun";
+                removeMarkers();
+                getFilterMarkers(icons);
+            }
+
+            function addCasino() {
+                var icons = "casino";
+                removeMarkers();
+                getFilterMarkers(icons);
+            }
+
+            function addZoo() {
+                var icons = "zoo";
+                removeMarkers();
+                getFilterMarkers(icons);
+            }
+
+            function addShopping() {
+                var icons = "shopping_mall";
+                removeMarkers();
+                getFilterMarkers(icons);
+            }
+
+            function addTourist() {
+                var icons = "tourist_attraction";
+                removeMarkers();
+                getFilterMarkers(icons);
+            }
 
             function addPark() {
                 var icons = "park";
@@ -94,6 +137,12 @@ function geoCity(getCity) {
 
             function addNightLife() {
                 var icons= "night_club";
+                removeMarkers();
+                getFilterMarkers(icons);
+            }
+
+            function addCafe() {
+                var icons = "cafe";
                 removeMarkers();
                 getFilterMarkers(icons);
             }
@@ -162,6 +211,7 @@ function geoCity(getCity) {
             scaledSize: new google.maps.Size(26,26)
         }
     })
+    props.name = placeNameArray[i]
     markersArray.push(marker) // stores anchor points in an array so that they can properly be removed
     if(resultsArray[i].rating){ // checks to see if a rating is applicable
         var infoWindow = new google.maps.InfoWindow({
@@ -179,9 +229,10 @@ function geoCity(getCity) {
     }
 
     marker.addListener('click', function(){ // changes the google maps window to be the center
+        baseURL = `https://www.reddit.com/search.json?q=${props.name}&type=comments`;
+        getRedditPost(baseURL);
         infoWindow.open(map, this);
-        map.panTo(marker.position)
-        infoWindowCounter++;
+        map.panTo(marker.position);
     })
 
 
@@ -205,10 +256,11 @@ function removeMarkers(){
 initMap();
 
 citySearch.on("click", saveCity);
-
-
-
-
+searchFormEl.on("submit", function(event){
+    event.preventDefault();
+    saveCity();
+    location.href ='selection1.html'
+})
 
 function saveCity () {
     chosenCity = userCity.val().trim();
@@ -217,7 +269,43 @@ function saveCity () {
 
 }
 
+function getRedditPost(){
+    console.log(baseURL)
+  
+    fetch(baseURL)
+      .then(response =>{
+        console.log(response);
+        return response.json()
+      })
+      .then(data =>{
+        var textValue;
+        var titleValue;
+        var authorValue;
+        console.log(data.data.children);
+  
+        for(var i = 0; i < data.data.children.length; i++){ // this filters out any posts that dont have text
+          if(data.data.children[i].data.selftext.trim().length > 0){
+            textValue = `${data.data.children[i].data.selftext}`;
+            titleValue = `${data.data.children[i].data.title}`;
+            authorValue = `Posted by u/${data.data.children[i].data.author}`;
+            console.log(textValue);
+            console.log(titleValue);
+            console.log(authorValue);
+            i += data.data.children.length;
+            continue;
+          }
+        }
+        $('#reddit-author').html(authorValue); // this sets the text element in the HTML to whatever it gets from reddit and shortens it to the desired amount of letters
+        if ($('#reddit-title').html(titleValue.substring(0, 150)) > 150){
+            $('#reddit-title').html(titleValue.substring(0, 150) + '...'); 
+        }else{
+            $('#reddit-title').html(titleValue);
+        }
 
+        $('#reddit-text').html(textValue.substring(0, 1000) + '...'); 
+      })
+      .catch(err => console.error(err));
+  }
 
 
 
