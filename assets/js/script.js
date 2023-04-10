@@ -3,7 +3,7 @@ let map;
 const searchButton = $("#searchButton");
 const userCity = $("#search-input");
 const searchFormEl = $('#search-form')
-const citySearch = $("#city-search");
+const citySearch = $("#location-search");
 const parks = $("#parks");
 const museum = $("#museum");
 const nightLife = $("#night-life");
