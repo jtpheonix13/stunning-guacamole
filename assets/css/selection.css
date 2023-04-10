@@ -48,10 +48,6 @@ html, body {
   align-items: center;
 }
 
-.row {
-  margin-bottom: 50px;
-}
-
 .content {
   padding: 20px;
   text-align: center;
@@ -65,9 +61,6 @@ html, body {
   align-items: center;
 }
 
-.col-md-3 {
-  height: 300px;
-}
 
 .col-md-3 img {
   width: 100%;
@@ -101,8 +94,8 @@ margin: 10px auto;
 }    
 
 .col-md-3 img {
-  height: 300px;
-  width: 500px;
+  height: 200px;
+  width: 400px;
 } 
 
 
