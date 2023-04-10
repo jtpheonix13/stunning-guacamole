@@ -2,6 +2,10 @@ var geocoder;
 let map;
 const searchButton = $("#searchButton");
 const userCity = $("#search-input");
+const citySearch = $("#city-search");
+const parks = $("#parks");
+const museum = $("#museum");
+const nightLife = $("#night-life");
 
 //array of coordinates
 coordsArray = [];
@@ -39,13 +43,26 @@ async function initMap() {
     }
 
 map = new Map(document.getElementById('map'), mapOptions);
-// event listener on the button
-searchButton.on("click", geoCity);
+
+$("body").on("load", checkStorage());
+
+function checkStorage () {
+    var getCity = localStorage.getItem("city");
+    console.log(getCity);
+
+    if (getCity == "") {
+        return;
+    } else {
+        geoCity(getCity);
+    }
+
+}
+
 
 // function to get user input
-function geoCity() {
+function geoCity(getCity) {
 
-    chosenCity = userCity.val().trim();
+    chosenCity = getCity;
     console.log(chosenCity);
 
     geocoder.geocode({address: chosenCity}, function(results, status){
@@ -58,20 +75,46 @@ function geoCity() {
             latlng = JSON.parse(JSON.stringify(marker.position))
             console.log(latlng)
             markersArray.push(marker) // pushes the city marker to the markersArray because it wouldn't disappear otherwise
-            removeMarkers();
-            getFilterMarkers();
+            // add parks icons
+            parks.on('click', addPark);
+            museum.on('click', addMuseum);
+            nightLife.on('click', addNightLife);
+
+            function addPark() {
+                var icons = "park";
+                removeMarkers();
+                getFilterMarkers(icons);
+            }
+
+            function addMuseum() {
+                var icons= "museum";
+                removeMarkers();
+                getFilterMarkers(icons);
+            }
+
+            function addNightLife() {
+                var icons= "night_club";
+                removeMarkers();
+                getFilterMarkers(icons);
+            }
         } else {
             alert("Geocode was not successful");
         }
     })
 
-    function getFilterMarkers(){ // this will get the markers depending on the radius and type of place
+
+
+    function getFilterMarkers(type1){ // this will get the markers depending on the radius and type of place
+
+
 
         var request = {
             location: latlng,
             radius: '5000', // radius in meters
-            type: [], // look through Google Maps Place Types documentation to see all possible filters
+            type: [type1], // look through Google Maps Place Types documentation to see all possible filters
         }
+
+
 
 
         
@@ -160,3 +203,23 @@ function removeMarkers(){
 };
 
 initMap();
+
+citySearch.on("click", saveCity);
+
+
+
+
+
+function saveCity () {
+    chosenCity = userCity.val().trim();
+    console.log(chosenCity);
+    localStorage.setItem("city", chosenCity);
+
+}
+
+
+
+
+
+
+
