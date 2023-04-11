@@ -259,7 +259,7 @@ citySearch.on("click", saveCity);
 searchFormEl.on("submit", function(event){
     event.preventDefault();
     saveCity();
-    location.href ='selection1.html'
+    location.href ='selection.html'
 })
 
 function saveCity () {
