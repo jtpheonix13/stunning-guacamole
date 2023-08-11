@@ -1,4 +1,3 @@
-# stunning-guacamole
 
 # Out N' About #
 ![screen shot](./assets/images/outnabout.png)
